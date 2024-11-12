@@ -42,6 +42,6 @@ fun ListScreen(modifier: Modifier = Modifier) {
 
 @Preview
 @Composable
-private fun HomeScreenPreview() = IpedisAndroidAccessibilityCourseTheme {
-    HomeScreen()
+private fun ListScreenPreview() = IpedisAndroidAccessibilityCourseTheme {
+    ListScreen()
 }
