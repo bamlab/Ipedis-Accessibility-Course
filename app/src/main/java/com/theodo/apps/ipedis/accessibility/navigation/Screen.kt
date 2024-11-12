@@ -15,3 +15,8 @@ data object Home : Screen() {
 data object List : Screen() {
     override val title: String = "List"
 }
+
+@Serializable
+data object Order : Screen() {
+    override val title: String = "Order"
+}

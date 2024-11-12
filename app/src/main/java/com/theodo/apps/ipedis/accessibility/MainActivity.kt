@@ -13,8 +13,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.theodo.apps.ipedis.accessibility.navigation.Home
 import com.theodo.apps.ipedis.accessibility.navigation.List
+import com.theodo.apps.ipedis.accessibility.navigation.Order
 import com.theodo.apps.ipedis.accessibility.ui.screens.HomeScreen
 import com.theodo.apps.ipedis.accessibility.ui.screens.ListScreen
+import com.theodo.apps.ipedis.accessibility.ui.screens.OrderScreen
 import com.theodo.apps.ipedis.accessibility.ui.theme.IpedisAndroidAccessibilityCourseTheme
 
 class MainActivity : ComponentActivity() {
@@ -25,12 +27,15 @@ class MainActivity : ComponentActivity() {
             IpedisAndroidAccessibilityCourseTheme {
                 val navController = rememberNavController()
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    NavHost(navController = navController, startDestination = Home) {
+                    NavHost(navController = navController, startDestination = Order) {
                         composable<Home> {
                             HomeScreen(Modifier.padding(innerPadding))
                         }
                         composable<List> {
                             ListScreen(Modifier.padding(innerPadding))
+                        }
+                        composable<Order> {
+                            OrderScreen(Modifier.padding(innerPadding))
                         }
                     }
                 }
