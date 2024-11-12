@@ -12,7 +12,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.theodo.apps.ipedis.accessibility.navigation.Home
+import com.theodo.apps.ipedis.accessibility.navigation.List
 import com.theodo.apps.ipedis.accessibility.ui.screens.HomeScreen
+import com.theodo.apps.ipedis.accessibility.ui.screens.ListScreen
 import com.theodo.apps.ipedis.accessibility.ui.theme.IpedisAndroidAccessibilityCourseTheme
 
 class MainActivity : ComponentActivity() {
@@ -26,6 +28,9 @@ class MainActivity : ComponentActivity() {
                     NavHost(navController = navController, startDestination = Home) {
                         composable<Home> {
                             HomeScreen(Modifier.padding(innerPadding))
+                        }
+                        composable<List> {
+                            ListScreen(Modifier.padding(innerPadding))
                         }
                     }
                 }
