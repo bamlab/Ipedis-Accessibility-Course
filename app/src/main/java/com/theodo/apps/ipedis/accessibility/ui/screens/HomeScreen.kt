@@ -32,6 +32,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
             modifier = Modifier
         )
         Spacer(modifier = Modifier.weight(1f))
+        Spacer(modifier = Modifier.weight(1f))
     }
 }
 
