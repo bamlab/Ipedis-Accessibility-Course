@@ -11,9 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.theodo.apps.ipedis.accessibility.navigation.Home
 import com.theodo.apps.ipedis.accessibility.ui.screens.HomeScreen
 import com.theodo.apps.ipedis.accessibility.ui.theme.IpedisAndroidAccessibilityCourseTheme
-import kotlinx.serialization.Serializable
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,5 +35,3 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Serializable
-object Home
