@@ -28,10 +28,8 @@ class MainActivity : ComponentActivity() {
                             HomeScreen(Modifier.padding(innerPadding))
                         }
                     }
-
                 }
             }
         }
     }
 }
-

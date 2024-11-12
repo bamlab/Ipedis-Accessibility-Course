@@ -2,11 +2,9 @@ package com.theodo.apps.ipedis.accessibility.navigation
 
 import kotlinx.serialization.Serializable
 
-sealed abstract class Screen {
+abstract sealed class Screen {
     abstract val title: String
-
 }
-
 
 @Serializable
 object Home : Screen() {

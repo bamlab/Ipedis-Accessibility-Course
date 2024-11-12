@@ -19,32 +19,30 @@ import com.theodo.apps.ipedis.accessibility.ui.theme.Purple40
 fun CustomButton(
     text: String,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Text(
         text = text,
         color = Color.White,
-        modifier =
-            modifier
-                .clip(RoundedCornerShape(50))
-                .background(Purple40)
-                .padding(8.dp)
-                .padding(horizontal = 12.dp)
-                .customClick(onClick),
+        modifier = modifier
+            .clip(RoundedCornerShape(50))
+            .background(Purple40)
+            .padding(8.dp)
+            .padding(horizontal = 12.dp)
+            .customClick(onClick)
     )
 }
 
 @Preview
 @Composable
-private fun CustomButtonPreview() =
-    IpedisAndroidAccessibilityCourseTheme {
-        Column {
-            CustomButton(
-                text = "toto",
-                onClick = {},
-            )
-            Button(onClick = {}) {
-                Text("toto")
-            }
+private fun CustomButtonPreview() = IpedisAndroidAccessibilityCourseTheme {
+    Column {
+        CustomButton(
+            text = "toto",
+            onClick = {}
+        )
+        Button(onClick = {}) {
+            Text("toto")
         }
     }
+}

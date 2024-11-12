@@ -21,7 +21,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
             },
             modifier = modifier,
             navigationIcon = { },
-            actions = { },
+            actions = { }
         )
 
         Spacer(modifier = Modifier.weight(0.5f))
@@ -33,7 +33,6 @@ fun HomeScreen(modifier: Modifier = Modifier) {
         )
         Spacer(modifier = Modifier.weight(1f))
     }
-
 }
 
 @Preview
