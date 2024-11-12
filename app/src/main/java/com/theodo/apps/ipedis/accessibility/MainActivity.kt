@@ -11,9 +11,11 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.theodo.apps.ipedis.accessibility.navigation.Detail
 import com.theodo.apps.ipedis.accessibility.navigation.Home
 import com.theodo.apps.ipedis.accessibility.navigation.List
 import com.theodo.apps.ipedis.accessibility.navigation.Order
+import com.theodo.apps.ipedis.accessibility.ui.screens.DetailScreen
 import com.theodo.apps.ipedis.accessibility.ui.screens.HomeScreen
 import com.theodo.apps.ipedis.accessibility.ui.screens.ListScreen
 import com.theodo.apps.ipedis.accessibility.ui.screens.OrderScreen
@@ -27,15 +29,22 @@ class MainActivity : ComponentActivity() {
             IpedisAndroidAccessibilityCourseTheme {
                 val navController = rememberNavController()
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    NavHost(navController = navController, startDestination = Order) {
+                    NavHost(navController = navController, startDestination = Home) {
                         composable<Home> {
-                            HomeScreen(Modifier.padding(innerPadding))
+                            HomeScreen(Modifier.padding(innerPadding)) {
+                                navController.navigate(Detail)
+                            }
                         }
                         composable<List> {
                             ListScreen(Modifier.padding(innerPadding))
                         }
                         composable<Order> {
                             OrderScreen(Modifier.padding(innerPadding))
+                        }
+                        composable<Detail> {
+                            DetailScreen(Modifier.padding(innerPadding)) {
+                                navController.popBackStack()
+                            }
                         }
                     }
                 }
