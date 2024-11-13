@@ -31,9 +31,18 @@ class MainActivity : ComponentActivity() {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     NavHost(navController = navController, startDestination = Home) {
                         composable<Home> {
-                            HomeScreen(Modifier.padding(innerPadding)) {
-                                navController.navigate(Detail)
-                            }
+                            HomeScreen(
+                                modifier = Modifier.padding(innerPadding),
+                                goDetail = {
+                                    navController.navigate(Detail)
+                                },
+                                goList = {
+                                    navController.navigate(List)
+                                },
+                                goOrder = {
+                                    navController.navigate(Order)
+                                }
+                            )
                         }
                         composable<List> {
                             ListScreen(Modifier.padding(innerPadding))
