@@ -8,6 +8,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.theodo.apps.ipedis.accessibility.ui.components.CustomArticle
 import com.theodo.apps.ipedis.accessibility.ui.components.CustomButton
 import com.theodo.apps.ipedis.accessibility.ui.components.CustomIconButton
 import com.theodo.apps.ipedis.accessibility.ui.components.CustomTopAppBar
@@ -36,6 +37,9 @@ fun HomeScreen(modifier: Modifier = Modifier, onClick: () -> Unit) {
             onClick = onClick
         )
         Spacer(modifier = Modifier.weight(1f))
+        CustomArticle(
+            name = "Article 1"
+        )
         Spacer(modifier = Modifier.weight(1f))
     }
 }
