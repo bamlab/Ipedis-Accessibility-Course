@@ -13,12 +13,12 @@ data object Home : Screen() {
 
 @Serializable
 data object List : Screen() {
-    override val title: String = "List"
+    override val title: String = "Liste"
 }
 
 @Serializable
 data object Order : Screen() {
-    override val title: String = "Order"
+    override val title: String = "Ordre"
 }
 
 @Serializable
