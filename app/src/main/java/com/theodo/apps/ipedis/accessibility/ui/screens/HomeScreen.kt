@@ -25,7 +25,8 @@ fun HomeScreen(
     goDetail: () -> Unit = {},
     goList: () -> Unit = {},
     goOrder: () -> Unit = {},
-    goOffer: () -> Unit = {}
+    goOffer: () -> Unit = {},
+    goCanvas: () -> Unit = {}
 ) {
     Column {
         CustomTopAppBar(
@@ -66,6 +67,11 @@ fun HomeScreen(
             CustomButton(
                 text = "Voir les offres",
                 onClick = goOffer,
+                modifier = Modifier.padding(8.dp)
+            )
+            CustomButton(
+                text = "Voir le Canvas",
+                onClick = goCanvas,
                 modifier = Modifier.padding(8.dp)
             )
         }

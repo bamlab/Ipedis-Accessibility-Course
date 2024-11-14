@@ -30,3 +30,8 @@ data object Detail : Screen() {
 data object Offer : Screen() {
     override val title: String = "Nos offres"
 }
+
+@Serializable
+data object Canvas : Screen() {
+    override val title: String = "Canvas"
+}
