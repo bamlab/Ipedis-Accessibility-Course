@@ -14,10 +14,12 @@ import androidx.navigation.compose.rememberNavController
 import com.theodo.apps.ipedis.accessibility.navigation.Detail
 import com.theodo.apps.ipedis.accessibility.navigation.Home
 import com.theodo.apps.ipedis.accessibility.navigation.List
+import com.theodo.apps.ipedis.accessibility.navigation.Offer
 import com.theodo.apps.ipedis.accessibility.navigation.Order
 import com.theodo.apps.ipedis.accessibility.ui.screens.DetailScreen
 import com.theodo.apps.ipedis.accessibility.ui.screens.HomeScreen
 import com.theodo.apps.ipedis.accessibility.ui.screens.ListScreen
+import com.theodo.apps.ipedis.accessibility.ui.screens.OfferScreen
 import com.theodo.apps.ipedis.accessibility.ui.screens.OrderScreen
 import com.theodo.apps.ipedis.accessibility.ui.theme.IpedisAndroidAccessibilityCourseTheme
 
@@ -41,6 +43,9 @@ class MainActivity : ComponentActivity() {
                                 },
                                 goOrder = {
                                     navController.navigate(Order)
+                                },
+                                goOffer = {
+                                    navController.navigate(Offer)
                                 }
                             )
                         }
@@ -52,6 +57,11 @@ class MainActivity : ComponentActivity() {
                         }
                         composable<Detail> {
                             DetailScreen(Modifier.padding(innerPadding)) {
+                                navController.popBackStack()
+                            }
+                        }
+                        composable<Offer> {
+                            OfferScreen(Modifier.padding(innerPadding)) {
                                 navController.popBackStack()
                             }
                         }

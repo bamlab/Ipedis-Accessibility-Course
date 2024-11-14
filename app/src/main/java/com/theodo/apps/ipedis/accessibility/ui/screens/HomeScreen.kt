@@ -1,8 +1,11 @@
 package com.theodo.apps.ipedis.accessibility.ui.screens
 
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Text
@@ -21,7 +24,8 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
     goDetail: () -> Unit = {},
     goList: () -> Unit = {},
-    goOrder: () -> Unit = {}
+    goOrder: () -> Unit = {},
+    goOffer: () -> Unit = {}
 ) {
     Column {
         CustomTopAppBar(
@@ -48,16 +52,24 @@ fun HomeScreen(
             name = "Article 1"
         )
         Spacer(modifier = Modifier.weight(1f))
-        CustomButton(
-            text = "Voir la liste",
-            onClick = goList,
-            modifier = Modifier.padding(8.dp)
-        )
-        CustomButton(
-            text = "Voir l'ordre",
-            onClick = goOrder,
-            modifier = Modifier.padding(8.dp)
-        )
+        Row(modifier.horizontalScroll(rememberScrollState())) {
+            CustomButton(
+                text = "Voir la liste",
+                onClick = goList,
+                modifier = Modifier.padding(8.dp)
+            )
+            CustomButton(
+                text = "Voir l'ordre",
+                onClick = goOrder,
+                modifier = Modifier.padding(8.dp)
+            )
+            CustomButton(
+                text = "Voir les offres",
+                onClick = goOffer,
+                modifier = Modifier.padding(8.dp)
+            )
+        }
+
         Spacer(modifier = Modifier.weight(0.5f))
     }
 }
