@@ -62,6 +62,7 @@ fun LinesOfCodeGraph(lines: List<Int>, modifier: Modifier = Modifier) {
                     .fillMaxSize()
                     .padding(vertical = 4.dp)
                     .semantics {
+                        // faire 2 row en description -> les barres et les semaines
                         contentDescription = lines
                             .mapIndexed { index, lineCount ->
                                 "Semaine ${index + 1}: $lineCount lignes."

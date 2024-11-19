@@ -48,6 +48,9 @@ class MainActivity : ComponentActivity() {
                                 },
                                 goOffer = {
                                     navController.navigate(Offer)
+                                },
+                                goCanvas = {
+                                    navController.navigate(Canvas)
                                 }
                             )
                         }
