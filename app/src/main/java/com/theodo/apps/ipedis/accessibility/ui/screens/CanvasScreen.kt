@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
@@ -61,14 +62,6 @@ fun LinesOfCodeGraph(lines: List<Int>, modifier: Modifier = Modifier) {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(vertical = 4.dp)
-                    .semantics {
-                        // faire 2 row en description -> les barres et les semaines
-                        contentDescription = lines
-                            .mapIndexed { index, lineCount ->
-                                "Semaine ${index + 1}: $lineCount lignes."
-                            }
-                            .reduce(String::plus)
-                    }
             ) {
                 val barWidth = size.width / lines.size
                 lines.forEachIndexed { index, lineCount ->
@@ -114,6 +107,37 @@ fun LinesOfCodeGraph(lines: List<Int>, modifier: Modifier = Modifier) {
                         }
                     }
                 }
+            }
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .align(Alignment.BottomStart)
+            ) {
+                Box(
+                    modifier = Modifier
+                        .height(238.dp)
+                        .fillMaxWidth()
+                        .semantics {
+                            // faire 2 row en description -> les barres et les semaines
+                            contentDescription = lines
+                                .mapIndexed { _, lineCount ->
+                                    "$lineCount lignes, "
+                                }
+                                .reduce(String::plus)
+                        }
+                )
+                Box(
+                    modifier = Modifier
+                        .height(12.dp)
+                        .fillMaxWidth()
+                        .semantics {
+                            // faire 2 row en description -> les barres et les semaines
+                            contentDescription = List(lines.size) { index ->
+                                "Semaine ${index + 1},  "
+                            }
+                                .reduce(String::plus)
+                        }
+                )
             }
         }
     }
