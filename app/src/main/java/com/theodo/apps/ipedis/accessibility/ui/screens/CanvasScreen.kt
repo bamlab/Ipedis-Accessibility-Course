@@ -118,7 +118,6 @@ fun LinesOfCodeGraph(lines: List<Int>, modifier: Modifier = Modifier) {
                         .height(238.dp)
                         .fillMaxWidth()
                         .semantics {
-                            // faire 2 row en description -> les barres et les semaines
                             contentDescription = lines
                                 .mapIndexed { _, lineCount ->
                                     "$lineCount lignes, "
@@ -131,7 +130,6 @@ fun LinesOfCodeGraph(lines: List<Int>, modifier: Modifier = Modifier) {
                         .height(12.dp)
                         .fillMaxWidth()
                         .semantics {
-                            // faire 2 row en description -> les barres et les semaines
                             contentDescription = List(lines.size) { index ->
                                 "Semaine ${index + 1},  "
                             }
