@@ -13,6 +13,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import com.theodo.apps.ipedis.accessibility.navigation.Canvas
+import com.theodo.apps.ipedis.accessibility.navigation.Detail
+import com.theodo.apps.ipedis.accessibility.navigation.Offer
+import com.theodo.apps.ipedis.accessibility.navigation.Order
 import com.theodo.apps.ipedis.accessibility.ui.components.CustomArticle
 import com.theodo.apps.ipedis.accessibility.ui.components.CustomButton
 import com.theodo.apps.ipedis.accessibility.ui.components.CustomIconButton
@@ -22,11 +27,7 @@ import com.theodo.apps.ipedis.accessibility.ui.theme.IpedisAndroidAccessibilityC
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    goDetail: () -> Unit = {},
-    goList: () -> Unit = {},
-    goOrder: () -> Unit = {},
-    goOffer: () -> Unit = {},
-    goCanvas: () -> Unit = {}
+    events: HomeScreenEvents
 ) {
     Column {
         CustomTopAppBar(
@@ -41,12 +42,12 @@ fun HomeScreen(
         Spacer(modifier = Modifier.weight(0.5f))
         CustomButton(
             text = "Voir le détail",
-            onClick = goDetail,
+            onClick = events.goDetail,
             modifier = Modifier.padding(8.dp)
         )
         CustomIconButton(
             image = Icons.Default.Info,
-            onClick = goDetail
+            onClick = events.goDetail
         )
         Spacer(modifier = Modifier.weight(1f))
         CustomArticle(
@@ -56,22 +57,22 @@ fun HomeScreen(
         Row(modifier.horizontalScroll(rememberScrollState())) {
             CustomButton(
                 text = "Voir la liste",
-                onClick = goList,
+                onClick = events.goList,
                 modifier = Modifier.padding(8.dp)
             )
             CustomButton(
                 text = "Voir l'ordre",
-                onClick = goOrder,
+                onClick = events.goOrder,
                 modifier = Modifier.padding(8.dp)
             )
             CustomButton(
                 text = "Voir les offres",
-                onClick = goOffer,
+                onClick = events.goOffer,
                 modifier = Modifier.padding(8.dp)
             )
             CustomButton(
                 text = "Voir le Canvas",
-                onClick = goCanvas,
+                onClick = events.goCanvas,
                 modifier = Modifier.padding(8.dp)
             )
         }
@@ -80,8 +81,34 @@ fun HomeScreen(
     }
 }
 
+data class HomeScreenEvents(
+    val goDetail: () -> Unit,
+    val goList: () -> Unit,
+    val goOrder: () -> Unit,
+    val goOffer: () -> Unit,
+    val goCanvas: () -> Unit
+) {
+    companion object {
+        fun none() = HomeScreenEvents(
+            goDetail = {},
+            goList = {},
+            goOrder = {},
+            goOffer = {},
+            goCanvas = {}
+        )
+
+        fun default(navController: NavController) = HomeScreenEvents(
+            goDetail = { navController.navigate(Detail) },
+            goList = { navController.navigate(com.theodo.apps.ipedis.accessibility.navigation.List) },
+            goOrder = { navController.navigate(Order) },
+            goOffer = { navController.navigate(Offer) },
+            goCanvas = { navController.navigate(Canvas) }
+        )
+    }
+}
+
 @Preview
 @Composable
 private fun HomeScreenPreview() = IpedisAndroidAccessibilityCourseTheme {
-    HomeScreen()
+    HomeScreen(events = HomeScreenEvents.none())
 }

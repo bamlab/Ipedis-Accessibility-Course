@@ -22,6 +22,17 @@ Vous devrez les réaliser dans l'ordre.
 - Corriger les problèmes d'accessibilité
 - Tester à nouveau l'accessibilité de l'application
 
+## Structure du projet
+
+Dans le package `ui.components` vous trouverez les composants custom de l'application qui ne sont
+pas accessibles. C'est ceux la que vous devrez rendre accessible.
+
+Dans le package `ui.screens` vous trouverez les écrans de l'application, vous aurez aussi des
+changements à faire dessus.
+
+Dans le fichier `MainActivity.kt` vous trouverez la liste des écrans de l'application, vous pouvez y
+changer l'écran de démarrage de l'application pour plus de facilité dans les exercices.
+
 ## Liste des exercices
 
 A venir.

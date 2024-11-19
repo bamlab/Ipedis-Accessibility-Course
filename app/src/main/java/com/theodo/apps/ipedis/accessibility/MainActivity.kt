@@ -20,12 +20,22 @@ import com.theodo.apps.ipedis.accessibility.navigation.Order
 import com.theodo.apps.ipedis.accessibility.ui.screens.CanvasScreen
 import com.theodo.apps.ipedis.accessibility.ui.screens.DetailScreen
 import com.theodo.apps.ipedis.accessibility.ui.screens.HomeScreen
+import com.theodo.apps.ipedis.accessibility.ui.screens.HomeScreenEvents
 import com.theodo.apps.ipedis.accessibility.ui.screens.ListScreen
 import com.theodo.apps.ipedis.accessibility.ui.screens.OfferScreen
 import com.theodo.apps.ipedis.accessibility.ui.screens.OrderScreen
 import com.theodo.apps.ipedis.accessibility.ui.theme.IpedisAndroidAccessibilityCourseTheme
 
 class MainActivity : ComponentActivity() {
+
+    companion object {
+        /**
+         * The screen to launch when the app is started.
+         * You can change this value to any of the [Screen] objects in order to deploy and try your changes more easily.
+         */
+        private val launcherScreen = Home
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -33,25 +43,11 @@ class MainActivity : ComponentActivity() {
             IpedisAndroidAccessibilityCourseTheme {
                 val navController = rememberNavController()
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    NavHost(navController = navController, startDestination = Home) {
+                    NavHost(navController = navController, startDestination = launcherScreen) {
                         composable<Home> {
                             HomeScreen(
                                 modifier = Modifier.padding(innerPadding),
-                                goDetail = {
-                                    navController.navigate(Detail)
-                                },
-                                goList = {
-                                    navController.navigate(List)
-                                },
-                                goOrder = {
-                                    navController.navigate(Order)
-                                },
-                                goOffer = {
-                                    navController.navigate(Offer)
-                                },
-                                goCanvas = {
-                                    navController.navigate(Canvas)
-                                }
+                                events = HomeScreenEvents.default(navController)
                             )
                         }
                         composable<List> {
