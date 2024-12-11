@@ -13,6 +13,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.theodo.apps.ipedis.accessibility.navigation.Canvas
 import com.theodo.apps.ipedis.accessibility.navigation.Detail
+import com.theodo.apps.ipedis.accessibility.navigation.FormatedTexts
 import com.theodo.apps.ipedis.accessibility.navigation.Home
 import com.theodo.apps.ipedis.accessibility.navigation.List
 import com.theodo.apps.ipedis.accessibility.navigation.Offer
@@ -20,6 +21,7 @@ import com.theodo.apps.ipedis.accessibility.navigation.Order
 import com.theodo.apps.ipedis.accessibility.navigation.Titles
 import com.theodo.apps.ipedis.accessibility.ui.screens.CanvasScreen
 import com.theodo.apps.ipedis.accessibility.ui.screens.DetailScreen
+import com.theodo.apps.ipedis.accessibility.ui.screens.FormatedTextsScreen
 import com.theodo.apps.ipedis.accessibility.ui.screens.HomeScreen
 import com.theodo.apps.ipedis.accessibility.ui.screens.HomeScreenEvents
 import com.theodo.apps.ipedis.accessibility.ui.screens.ListScreen
@@ -35,7 +37,7 @@ class MainActivity : ComponentActivity() {
          * The screen to launch when the app is started.
          * You can change this value to any of the [Screen] objects in order to deploy and try your changes more easily.
          */
-        private val launcherScreen = Titles
+        private val launcherScreen = FormatedTexts
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,6 +75,9 @@ class MainActivity : ComponentActivity() {
                         }
                         composable<Titles> {
                             TitlesScreen(Modifier.padding(innerPadding))
+                        }
+                        composable<FormatedTexts> {
+                            FormatedTextsScreen(Modifier.padding(innerPadding))
                         }
                     }
                 }

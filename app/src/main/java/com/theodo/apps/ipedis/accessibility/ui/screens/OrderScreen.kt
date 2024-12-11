@@ -15,12 +15,12 @@ import com.theodo.apps.ipedis.accessibility.ui.theme.IpedisAndroidAccessibilityC
 
 @Composable
 fun OrderScreen(modifier: Modifier = Modifier) {
-    Column {
+    Column(modifier) {
         CustomTopAppBar(
             title = {
                 Text(Order.title)
             },
-            modifier = modifier,
+            modifier = Modifier,
             navigationIcon = { },
             actions = { }
         )

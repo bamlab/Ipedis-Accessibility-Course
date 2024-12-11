@@ -19,7 +19,7 @@ fun TitlesScreen(modifier: Modifier = Modifier) {
             title = {
                 Text(Titles.title, Modifier)
             },
-            modifier = modifier,
+            modifier = Modifier,
             navigationIcon = { },
             actions = { }
         )

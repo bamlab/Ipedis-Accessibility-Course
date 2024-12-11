@@ -40,3 +40,8 @@ data object Canvas : Screen() {
 data object Titles : Screen() {
     override val title: String = "Titres"
 }
+
+@Serializable
+data object FormatedTexts : Screen() {
+    override val title: String = "Textes formatés"
+}
