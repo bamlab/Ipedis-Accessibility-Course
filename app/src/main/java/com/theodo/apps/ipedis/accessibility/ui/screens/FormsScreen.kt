@@ -7,9 +7,12 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.LocalContentColor
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -34,12 +37,26 @@ fun FormsScreen(modifier: Modifier = Modifier) {
         )
 
         var textFieldValue by remember { mutableStateOf("") }
+        val badErrorText = "Le champ email est en erreur"
+        val betterErrorText = "Le champ email est obligatoire. Format attendu : nom@mail.com"
         CustomTextField(
             value = textFieldValue,
             onValueChange = { textFieldValue = it },
             label = { Text("Email") },
-            supportingText = { Text("Le champ email est obligatoire. Format attendu : nom@mail.com") },
+            supportingText = { Text(badErrorText) },
             isError = true,
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth()
+        )
+
+        var textFieldPhoneValue by remember { mutableStateOf("") }
+
+        TextField(
+            value = textFieldPhoneValue,
+            onValueChange = { textFieldPhoneValue = it },
+            label = { Text("Telephone") },
+            supportingText = { Text("Le numéro de téléphone doit contenir exactement 10 chiffres") },
             modifier = Modifier
                 .padding(16.dp)
                 .fillMaxWidth()
@@ -57,7 +74,6 @@ fun CustomTextField(
     isError: Boolean = false,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
-    singleLine: Boolean = false
 ) {
     Column(modifier) {
         label?.invoke()
@@ -65,8 +81,18 @@ fun CustomTextField(
         TextField(
             modifier = Modifier,
             value = value,
-            onValueChange = onValueChange
+            onValueChange = onValueChange,
+            keyboardActions = keyboardActions,
+            keyboardOptions = keyboardOptions
         )
+
+        if (isError) {
+            CompositionLocalProvider(LocalContentColor provides MaterialTheme.colorScheme.error) {
+                supportingText?.invoke()
+            }
+        } else {
+            supportingText?.invoke()
+        }
     }
 }
 
