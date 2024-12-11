@@ -1,19 +1,25 @@
 package com.theodo.apps.ipedis.accessibility.ui.screens
 
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Tab
-import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -48,9 +54,9 @@ fun LoremIpsumScreen() {
 
     Scaffold(
         topBar = {
-            TabRow(selectedTabIndex = selectedTabIndex) {
+            CustomTabRow(selectedTabIndex = selectedTabIndex) {
                 tabs.forEachIndexed { index, title ->
-                    Tab(
+                    CustomTab(
                         selected = selectedTabIndex == index,
                         onClick = { selectedTabIndex = index },
                         text = { Text(title) }
@@ -71,6 +77,43 @@ fun LoremIpsumScreen() {
             )
         }
     }
+}
+
+@Composable
+fun CustomTabRow(selectedTabIndex: Int, content: @Composable RowScope.() -> Unit) {
+    Row(
+        Modifier
+            .fillMaxWidth()
+    ) {
+        content()
+    }
+}
+
+@Composable
+private fun RowScope.CustomTab(
+    selected: Boolean,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    text: @Composable (ColumnScope.() -> Unit)
+) {
+    Column(
+        modifier =
+        modifier
+            .clickable(
+                onClick = onClick,
+                enabled = enabled
+            )
+            .border(
+                width = if (selected) 4.dp else 0.dp,
+                color = MaterialTheme.colorScheme.primary
+            )
+            .padding(8.dp)
+            .weight(1f),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+        content = text
+    )
 }
 
 @Preview
