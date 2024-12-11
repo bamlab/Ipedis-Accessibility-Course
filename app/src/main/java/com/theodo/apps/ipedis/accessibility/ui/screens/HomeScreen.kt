@@ -16,8 +16,11 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.theodo.apps.ipedis.accessibility.navigation.Canvas
 import com.theodo.apps.ipedis.accessibility.navigation.Detail
+import com.theodo.apps.ipedis.accessibility.navigation.FormatedTexts
+import com.theodo.apps.ipedis.accessibility.navigation.Forms
 import com.theodo.apps.ipedis.accessibility.navigation.Offer
 import com.theodo.apps.ipedis.accessibility.navigation.Order
+import com.theodo.apps.ipedis.accessibility.navigation.Tabs
 import com.theodo.apps.ipedis.accessibility.navigation.Titles
 import com.theodo.apps.ipedis.accessibility.ui.components.CustomArticle
 import com.theodo.apps.ipedis.accessibility.ui.components.CustomButton
@@ -30,6 +33,17 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
     events: HomeScreenEvents
 ) {
+    val buttons = mapOf(
+        "Détails" to events.Détails,
+        "Liste" to events.Liste,
+        "Ordre" to events.Ordre,
+        "Offres" to events.Offres,
+        "Graphique" to events.Graphique,
+        "Titres" to events.Titres,
+        "Formats" to events.Formats,
+        "Onglets" to events.Onglets,
+        "Formulaires" to events.Formulaires
+    )
     Column {
         CustomTopAppBar(
             title = {
@@ -43,12 +57,12 @@ fun HomeScreen(
         Spacer(modifier = Modifier.weight(0.5f))
         CustomButton(
             text = "Voir le détail",
-            onClick = events.goDetail,
+            onClick = events.Détails,
             modifier = Modifier.padding(8.dp)
         )
         CustomIconButton(
             image = Icons.Default.Info,
-            onClick = events.goDetail
+            onClick = events.Détails
         )
         Spacer(modifier = Modifier.weight(1f))
         CustomArticle(
@@ -56,31 +70,13 @@ fun HomeScreen(
         )
         Spacer(modifier = Modifier.weight(1f))
         Row(modifier.horizontalScroll(rememberScrollState())) {
-            CustomButton(
-                text = "Voir la liste",
-                onClick = events.goList,
-                modifier = Modifier.padding(8.dp)
-            )
-            CustomButton(
-                text = "Voir l'ordre",
-                onClick = events.goOrder,
-                modifier = Modifier.padding(8.dp)
-            )
-            CustomButton(
-                text = "Voir les offres",
-                onClick = events.goOffer,
-                modifier = Modifier.padding(8.dp)
-            )
-            CustomButton(
-                text = "Voir le Canvas",
-                onClick = events.goCanvas,
-                modifier = Modifier.padding(8.dp)
-            )
-            CustomButton(
-                text = "Titres",
-                onClick = events.goToTitles,
-                modifier = Modifier.padding(8.dp)
-            )
+            buttons.forEach { (name, function) ->
+                CustomButton(
+                    text = name,
+                    onClick = function,
+                    modifier = Modifier.padding(8.dp)
+                )
+            }
         }
 
         Spacer(modifier = Modifier.weight(0.5f))
@@ -88,30 +84,39 @@ fun HomeScreen(
 }
 
 data class HomeScreenEvents(
-    val goDetail: () -> Unit,
-    val goList: () -> Unit,
-    val goOrder: () -> Unit,
-    val goOffer: () -> Unit,
-    val goCanvas: () -> Unit,
-    val goToTitles: () -> Unit
+    val Détails: () -> Unit,
+    val Liste: () -> Unit,
+    val Ordre: () -> Unit,
+    val Offres: () -> Unit,
+    val Graphique: () -> Unit,
+    val Titres: () -> Unit,
+    val Formats: () -> Unit,
+    val Onglets: () -> Unit,
+    val Formulaires: () -> Unit
 ) {
     companion object {
         fun none() = HomeScreenEvents(
-            goDetail = {},
-            goList = {},
-            goOrder = {},
-            goOffer = {},
-            goCanvas = {},
-            goToTitles = {}
+            Détails = {},
+            Liste = {},
+            Ordre = {},
+            Offres = {},
+            Graphique = {},
+            Titres = {},
+            Formats = {},
+            Onglets = {},
+            Formulaires = {}
         )
 
         fun default(navController: NavController) = HomeScreenEvents(
-            goDetail = { navController.navigate(Detail) },
-            goList = { navController.navigate(com.theodo.apps.ipedis.accessibility.navigation.List) },
-            goOrder = { navController.navigate(Order) },
-            goOffer = { navController.navigate(Offer) },
-            goCanvas = { navController.navigate(Canvas) },
-            goToTitles = { navController.navigate(Titles) }
+            Détails = { navController.navigate(Detail) },
+            Liste = { navController.navigate(com.theodo.apps.ipedis.accessibility.navigation.List) },
+            Ordre = { navController.navigate(Order) },
+            Offres = { navController.navigate(Offer) },
+            Graphique = { navController.navigate(Canvas) },
+            Titres = { navController.navigate(Titles) },
+            Formats = { navController.navigate(FormatedTexts) },
+            Onglets = { navController.navigate(Tabs) },
+            Formulaires = { navController.navigate(Forms) }
         )
     }
 }

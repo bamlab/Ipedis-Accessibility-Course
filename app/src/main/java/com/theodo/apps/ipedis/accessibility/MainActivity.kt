@@ -41,7 +41,7 @@ class MainActivity : ComponentActivity() {
          * The screen to launch when the app is started.
          * You can change this value to any of the [Screen] objects in order to deploy and try your changes more easily.
          */
-        private val launcherScreen = Forms
+        private val launcherScreen = Home
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
