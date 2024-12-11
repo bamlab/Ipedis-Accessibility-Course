@@ -7,6 +7,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -18,6 +19,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.theodo.apps.ipedis.accessibility.navigation.Forms
@@ -52,7 +54,7 @@ fun FormsScreen(modifier: Modifier = Modifier) {
 
         var textFieldPhoneValue by remember { mutableStateOf("") }
 
-        TextField(
+        CustomTextField(
             value = textFieldPhoneValue,
             onValueChange = { textFieldPhoneValue = it },
             label = { Text("Telephone") },
@@ -61,6 +63,24 @@ fun FormsScreen(modifier: Modifier = Modifier) {
                 .padding(16.dp)
                 .fillMaxWidth()
         )
+
+        var sent by remember { mutableStateOf(false) }
+        val context = LocalContext.current
+        val sentText = "Formulaire enregistré avec succès"
+        Button(
+            onClick = { sent = true },
+            modifier = Modifier.padding(16.dp),
+            enabled = !sent
+        ) {
+            Text("Envoyer")
+        }
+
+        if (sent) {
+            Text(
+                text = sentText,
+                modifier = Modifier.padding(16.dp)
+            )
+        }
     }
 }
 
@@ -73,7 +93,7 @@ fun CustomTextField(
     supportingText: @Composable (() -> Unit)? = null,
     isError: Boolean = false,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default
 ) {
     Column(modifier) {
         label?.invoke()
