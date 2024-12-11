@@ -45,3 +45,8 @@ data object Titles : Screen() {
 data object FormatedTexts : Screen() {
     override val title: String = "Textes formatés"
 }
+
+@Serializable
+data object Tabs : Screen() {
+    override val title: String = "Onglets"
+}
