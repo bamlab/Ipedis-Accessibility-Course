@@ -18,6 +18,7 @@ import com.theodo.apps.ipedis.accessibility.navigation.Canvas
 import com.theodo.apps.ipedis.accessibility.navigation.Detail
 import com.theodo.apps.ipedis.accessibility.navigation.Offer
 import com.theodo.apps.ipedis.accessibility.navigation.Order
+import com.theodo.apps.ipedis.accessibility.navigation.Titles
 import com.theodo.apps.ipedis.accessibility.ui.components.CustomArticle
 import com.theodo.apps.ipedis.accessibility.ui.components.CustomButton
 import com.theodo.apps.ipedis.accessibility.ui.components.CustomIconButton
@@ -75,6 +76,11 @@ fun HomeScreen(
                 onClick = events.goCanvas,
                 modifier = Modifier.padding(8.dp)
             )
+            CustomButton(
+                text = "Titres",
+                onClick = events.goToTitles,
+                modifier = Modifier.padding(8.dp)
+            )
         }
 
         Spacer(modifier = Modifier.weight(0.5f))
@@ -86,7 +92,8 @@ data class HomeScreenEvents(
     val goList: () -> Unit,
     val goOrder: () -> Unit,
     val goOffer: () -> Unit,
-    val goCanvas: () -> Unit
+    val goCanvas: () -> Unit,
+    val goToTitles: () -> Unit
 ) {
     companion object {
         fun none() = HomeScreenEvents(
@@ -94,7 +101,8 @@ data class HomeScreenEvents(
             goList = {},
             goOrder = {},
             goOffer = {},
-            goCanvas = {}
+            goCanvas = {},
+            goToTitles = {}
         )
 
         fun default(navController: NavController) = HomeScreenEvents(
@@ -102,7 +110,8 @@ data class HomeScreenEvents(
             goList = { navController.navigate(com.theodo.apps.ipedis.accessibility.navigation.List) },
             goOrder = { navController.navigate(Order) },
             goOffer = { navController.navigate(Offer) },
-            goCanvas = { navController.navigate(Canvas) }
+            goCanvas = { navController.navigate(Canvas) },
+            goToTitles = { navController.navigate(Titles) }
         )
     }
 }
