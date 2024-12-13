@@ -8,6 +8,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,7 +26,6 @@ import androidx.compose.ui.unit.dp
 import com.theodo.apps.ipedis.accessibility.R
 import com.theodo.apps.ipedis.accessibility.navigation.Detail
 import com.theodo.apps.ipedis.accessibility.ui.components.CustomBadgedBox
-import com.theodo.apps.ipedis.accessibility.ui.components.CustomButton
 import com.theodo.apps.ipedis.accessibility.ui.components.CustomIconButton
 import com.theodo.apps.ipedis.accessibility.ui.components.CustomTopAppBar
 import com.theodo.apps.ipedis.accessibility.ui.theme.IpedisAndroidAccessibilityCourseTheme
@@ -38,10 +40,14 @@ fun DetailScreen(modifier: Modifier = Modifier, back: () -> Boolean) {
             },
             modifier = modifier,
             navigationIcon = {
-                CustomIconButton(
-                    image = Icons.AutoMirrored.Filled.ArrowBack,
+                IconButton(
                     onClick = { back() }
-                )
+                ) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                        contentDescription = "Retour écran précédent"
+                    )
+                }
             },
             actions = {
                 CustomBadgedBox(
@@ -67,7 +73,12 @@ fun DetailScreen(modifier: Modifier = Modifier, back: () -> Boolean) {
             modifier = Modifier.size(200.dp),
             contentScale = ContentScale.FillHeight
         )
-        CustomButton(text = "En savoir plus", onClick = { moreVisible = true })
+        Button(
+            onClick = { moreVisible = true },
+            modifier = Modifier
+        ) {
+            Text("En savoir plus")
+        }
         if (moreVisible) {
             Text("Voici plus d'informations sur nos offres")
         }

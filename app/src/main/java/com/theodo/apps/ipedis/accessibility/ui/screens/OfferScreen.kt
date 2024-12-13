@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,16 +18,19 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.theodo.apps.ipedis.accessibility.R
-import com.theodo.apps.ipedis.accessibility.ui.components.CustomIconButton
 import com.theodo.apps.ipedis.accessibility.ui.theme.IpedisAndroidAccessibilityCourseTheme
 
 @Composable
 fun OfferScreen(modifier: Modifier = Modifier, back: () -> Boolean) {
     Column(modifier = modifier) {
-        CustomIconButton(
-            image = Icons.AutoMirrored.Filled.ArrowBack,
+        IconButton(
             onClick = { back() }
-        )
+        ) {
+            Icon(
+                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                contentDescription = "Retour écran précédent"
+            )
+        }
 
         val imageContentDescription = "Nos offres d'emploi"
 
