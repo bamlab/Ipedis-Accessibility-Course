@@ -31,7 +31,7 @@ fun FormatedTextsScreen(modifier: Modifier = Modifier) {
                 style = MaterialTheme.typography.bodyLarge
             )
             Text(
-                text = "25 fev 24",
+                text = "25 feb 24",
                 modifier = Modifier,
                 style = MaterialTheme.typography.bodyLarge
             )
