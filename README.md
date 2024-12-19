@@ -43,3 +43,15 @@ le [support pour les formateurs](https://www.notion.so/m33/Exercices-Android-13c
 ## Ressources
 
 - [Documentation officielle sur l'accessibilité sur Android](https://developer.android.com/develop/ui/compose/accessibility)
+
+### Tester les regles semantiques avec des TUs compose
+
+https://developer.android.com/develop/ui/compose/accessibility/testing
+
+### Accessibility Scanner sur android Studio
+
+https://developer.android.com/guide/topics/ui/accessibility/testing#accessibility-scanner
+
+### Compose UI check Mode sur android Studio
+
+https://developer.android.com/guide/topics/ui/accessibility/testing#compose-ui-check

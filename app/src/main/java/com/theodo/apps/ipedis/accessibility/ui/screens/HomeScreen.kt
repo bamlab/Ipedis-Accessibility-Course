@@ -1,16 +1,16 @@
 package com.theodo.apps.ipedis.accessibility.ui.screens
 
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -45,7 +45,7 @@ fun HomeScreen(
         "Onglets" to events.Onglets,
         "Formulaires" to events.Formulaires
     )
-    Column {
+    Column(modifier.verticalScroll(rememberScrollState())) {
         CustomTopAppBar(
             title = {
                 Text("Home")
@@ -70,14 +70,14 @@ fun HomeScreen(
             name = "Article 1"
         )
         Spacer(modifier = Modifier.weight(1f))
-        Row(modifier.horizontalScroll(rememberScrollState())) {
-            buttons.forEach { (name, function) ->
-                Button(
-                    onClick = function,
-                    modifier = Modifier.padding(8.dp)
-                ) {
-                    Text(name)
-                }
+        buttons.forEach { (name, function) ->
+            Button(
+                onClick = function,
+                modifier = Modifier
+                    .padding(8.dp)
+                    .align(Alignment.CenterHorizontally)
+            ) {
+                Text(name)
             }
         }
 
