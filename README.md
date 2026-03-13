@@ -4,8 +4,8 @@
 
 Pour installer le projet, il vous faut:
 
-- Android Studio (ici Ladybug 2024.2.1)
-- Un émulateur ou un appareil android (un émulateur Android 35 sera plus pratique)
+- Android Studio (ici Panda 2025.3.2)
+- Un émulateur ou un appareil android (un émulateur Android 36 sera plus pratique)
 - Cloner le projet
 - Faire une synchronisation gradle
 
