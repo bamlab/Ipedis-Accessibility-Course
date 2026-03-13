@@ -26,6 +26,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.hideFromAccessibility
 import androidx.compose.ui.semantics.invisibleToUser
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
@@ -55,17 +56,17 @@ fun CustomArticle(name: String, modifier: Modifier = Modifier) {
             .fillMaxWidth()
             .padding(16.dp)
             .clickable {
-                    coroutineScope.launch {
-                        if (selected.isFavorite()) {
-                            selected = ArticleState.DELETE_FAVORITE
-                            delay(4000)
-                            selected = ArticleState.NOT_FAVORITE
-                        } else if (selected == ArticleState.NOT_FAVORITE) {
-                            selected = ArticleState.ADDING_FAVORITE
-                            delay(4000)
-                            selected = ArticleState.FAVORITE
-                        }
+                coroutineScope.launch {
+                    if (selected.isFavorite()) {
+                        selected = ArticleState.DELETE_FAVORITE
+                        delay(4000)
+                        selected = ArticleState.NOT_FAVORITE
+                    } else if (selected == ArticleState.NOT_FAVORITE) {
+                        selected = ArticleState.ADDING_FAVORITE
+                        delay(4000)
+                        selected = ArticleState.FAVORITE
                     }
+                }
             },
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
@@ -84,7 +85,9 @@ fun CustomArticle(name: String, modifier: Modifier = Modifier) {
                 modifier = Modifier.padding(horizontal = 4.dp)
             )
             if (selected.isLoading()) {
-                LinearProgressIndicator(Modifier.fillMaxWidth().semantics { this.invisibleToUser() })
+                LinearProgressIndicator(Modifier
+                    .fillMaxWidth()
+                    .semantics { this.hideFromAccessibility() })
             }
         }
         val icon = when (selected) {
