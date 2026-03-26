@@ -35,7 +35,7 @@ changer l'écran de démarrage de l'application pour plus de facilité dans les 
 
 ## Liste des exercices
 
-A venir.
+Voir le powerPoint de la formation.
 
 En attendant, voici
 le [support pour les formateurs](https://www.notion.so/m33/Exercices-Android-13c8f3776f4f80e99418f83d42ccf40e)
@@ -43,6 +43,26 @@ le [support pour les formateurs](https://www.notion.so/m33/Exercices-Android-13c
 ## Ressources
 
 - [Documentation officielle sur l'accessibilité sur Android](https://developer.android.com/develop/ui/compose/accessibility)
+- [Naviguer avec Talkback](https://support.google.com/accessibility/android/answer/6006598?hl=fr)
+- Sur ce [site web](https://www.magentaa11y.com/#/native-criteria/controls/overview) vous trouverez
+  plusieurs conseils et APIs à utiliser pour rendre vos composants Compose et XML accessibles.
+- Sur ce [repo](https://github.com/cvs-health/android-compose-accessibility-techniques) git vous
+  trouverez des bons et mauvais exemples d'utilisations des APIs d'accessibilité dans différents
+  cas. Nous allons aborder les principaux dans cette formation.
+
+### Activer et désactiver talkback avec adb
+
+activation:
+
+```bash
+adb shell settings put secure enabled_accessibility_services com.google.android.marvin.talkback/com.google.android.marvin.talkback.TalkBackService
+```
+
+Désactivation:
+
+```bash
+adb shell settings put secure enabled_accessibility_services null
+```
 
 ### Tester les regles semantiques avec des TUs compose
 
