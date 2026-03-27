@@ -39,26 +39,29 @@ fun FormsScreen(modifier: Modifier = Modifier) {
         )
 
         var textFieldValue by remember { mutableStateOf("") }
+        var emailError by remember { mutableStateOf(false) }
         val badErrorText = "Le champ email est en erreur"
         val betterErrorText = "Le champ email est obligatoire. Format attendu : nom@mail.com"
         CustomTextField(
             value = textFieldValue,
             onValueChange = { textFieldValue = it },
             label = { Text("Email") },
-            supportingText = { Text(badErrorText) },
-            isError = true,
+            supportingText = { if (emailError) Text(betterErrorText) else null },
+            isError = emailError,
             modifier = Modifier
                 .padding(16.dp)
                 .fillMaxWidth()
         )
 
         var textFieldPhoneValue by remember { mutableStateOf("") }
+        var phoneError by remember { mutableStateOf(false) }
 
         CustomTextField(
             value = textFieldPhoneValue,
             onValueChange = { textFieldPhoneValue = it },
             label = { Text("Telephone") },
-            supportingText = { Text("Le numéro de téléphone doit contenir exactement 10 chiffres") },
+            supportingText = { if (phoneError) Text("Le numéro de téléphone doit contenir exactement 10 chiffres") else null },
+            isError = phoneError,
             modifier = Modifier
                 .padding(16.dp)
                 .fillMaxWidth()
@@ -68,7 +71,9 @@ fun FormsScreen(modifier: Modifier = Modifier) {
         val context = LocalContext.current
         val sentText = "Formulaire enregistré avec succès"
         Button(
-            onClick = { sent = true },
+            onClick = {
+                validateForm(textFieldValue, textFieldPhoneValue)
+            },
             modifier = Modifier.padding(16.dp),
             enabled = !sent
         ) {
@@ -113,6 +118,18 @@ fun CustomTextField(
         } else {
             supportingText?.invoke()
         }
+    }
+}
+
+fun validateForm(email: String, phone: String) {
+    emailError = email.isEmpty() || !email.contains("@")
+    phoneError = phone.length != 10
+    if (emailError) {
+        // Give focus to the email field
+    } else if (phoneError) {
+        // Give focus to the phone field
+    } else {
+        sent = true
     }
 }
 
